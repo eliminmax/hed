@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <stdio.h>
 #include <signal.h>
 #include <sys/stat.h>
@@ -94,6 +95,7 @@ void editor_open_file(char *filename){
     while (pos < size) {
         size_t count = fread(c, sizeof(uint8_t), sizeof(c), fp);
         if (count != 4096 && count < size - pos) {
+            assert(!feof(fp));
             if (ferror(fp)) {
                 editor_set_status(STATUS_ERROR, "Failed to read file: %s",
                     strerror(errno));
@@ -236,6 +238,9 @@ void editor_render_ascii(int row, unsigned int start, unsigned int len){
     HEDByte *c;
     HEDBuff* buff = I->buff;
     int offset = start;
+
+    // If assertion is false, then c is uninitialized when read
+    assert(I->content_length > 0);
 
     for(int i = 0; i < len; i++){
         // Get byte to write
