@@ -10,7 +10,7 @@ OBJ_DIR = obj
 SRC = $(wildcard $(SRC_DIR)/*.c)
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-CPPFLAGS += -Iinclude -DHED_GIT_HASH=\"$(git_hash)\"
+CPPFLAGS += -Iinclude -DHED_GIT_HASH=\"$(git_hash)\" -DNDEBUG
 CPPFLAGS += -DHED_VERSION=\"$(version)\" -DHED_VERSION_SHORT=\"$(version_short)\"
 CFLAGS += -Wall
 PREFIX := /usr/local
@@ -19,7 +19,7 @@ PREFIX := /usr/local
 
 all: $(EXE)
 
-debug: CFLAGS += -g -DDEBUG
+debug: CFLAGS += -g -DDEBUG CPPFLAGS += -UNDEBUG
 debug: $(EXE)
 
 install:
