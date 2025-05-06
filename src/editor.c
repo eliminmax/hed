@@ -327,6 +327,7 @@ void editor_cursor_offset(unsigned int offset){
 
 void editor_check_scroll_top_limit(){
 
+    assert(I->bytes_per_line);
     // Max scroll
     unsigned int top_limit = I->content_length/I->bytes_per_line
                              - (I->screen_rows-3);
