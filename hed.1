@@ -177,6 +177,11 @@ e[dit] [file]     Open a new file to edit, will remind to save previous
                   if its edited.
 .It
 q                 quit (add ! to force quit)
+
+.It
+x[it]             Write current buffer to disk if it has been edited,
+                  then exit. Much like ':wq', but only writes if there's
+                  been any changes.
 .El
 
 .Sh EXAMPLES

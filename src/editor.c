@@ -1411,6 +1411,14 @@ void editor_process_command(){
     }
 
     switch(command[0]){
+        case 'x':
+            if(len == 1 || (len == 3 && memcmp(command, "xit", 3) == 0)){
+                if(I->dirty) {
+                    editor_write_file(NULL);
+                }
+                editor_process_quit(false);
+            }
+            break;
         case 'w':
             if(len == 1){
                 editor_write_file(NULL);

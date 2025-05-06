@@ -96,6 +96,7 @@ w[rite] [file]    Write current buffer to disk. If file is given, write
 e[dit] [file]     Open a new file to edit, will remind to save previous
                   if its edited.
 q                 quit (add ! to force quit)
+x[xit] [file]     Like ":wq", but write only if changed
 ```
 
 # Configuration file
